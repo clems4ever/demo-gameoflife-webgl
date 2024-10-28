@@ -4,6 +4,9 @@ This project is a demonstration of the Game of Life implemented using WebGL shad
 
 Demo: https://wgol-demo.clems4ever.com/
 
+
+[<img style="display: block; margin:auto" src="https://user-images.githubusercontent.com/9169414/36646548-4ac65af8-1a79-11e8-811d-da84549f7af3.gif" width="200"/>](https://user-images.githubusercontent.com/9169414/36646548-4ac65af8-1a79-11e8-811d-da84549f7af3.gif)
+
 ## What is Game of Life
 
 The [Game of Life][game-of-life] is a cellular automaton devised by mathematician John Horton Conway in 1970. It is a zero-player game, meaning that its evolution is determined solely by its initial state and its rules. The Game of Life has been known to produce many intriguing patterns that have been cataloged and extensively studied.
