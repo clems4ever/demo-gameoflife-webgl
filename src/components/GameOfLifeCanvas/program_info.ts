@@ -6,7 +6,6 @@ function setValue(arr: Uint8Array, width: number, x: number, y: number, v: numbe
 }
 
 interface SimulationState {
-  State: number;
   SourceTexture: WebGLTexture,
   TargetTexture: WebGLTexture,
   Framebuffer: WebGLFramebuffer,
@@ -43,13 +42,11 @@ export function run(gl: WebGLRenderingContext, gridWidth: number, gridHeight: nu
     gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex2, 0);
 
   let state1: SimulationState = {
-    State: 1,
     SourceTexture: tex1,
     TargetTexture: tex2,
     Framebuffer: fb2,
   };
   let state2: SimulationState = {
-    State: 2,
     SourceTexture: tex2,
     TargetTexture: tex1,
     Framebuffer: fb1,
@@ -64,19 +61,26 @@ export function run(gl: WebGLRenderingContext, gridWidth: number, gridHeight: nu
   gl.useProgram(renderProgram.program);
 
   const interval = setInterval(() => {
-    gl.bindFramebuffer(gl.FRAMEBUFFER, state.Framebuffer);
-
-    gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, state.SourceTexture);
-
-    gl.activeTexture(gl.TEXTURE0 + 1);
-    gl.bindTexture(gl.TEXTURE_2D, state.TargetTexture);
-
+    // setTextures sets the texture associated with the state
+    setTextures(gl, state);
+    // and then we run the programs and render.
     render(gl, simulationProgram, renderProgram, gridWidth, gridHeight);
 
+    // after the rendering, we can swap the states.
     state = (state === state1) ? state2 : state1;
   }, intervalMs);
   return () => clearInterval(interval);
+}
+
+function setTextures(gl: WebGLRenderingContext, state: SimulationState) {
+    // update the framebuffer.
+    gl.bindFramebuffer(gl.FRAMEBUFFER, state.Framebuffer);
+
+    // and swap the textures.
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, state.SourceTexture);
+    gl.activeTexture(gl.TEXTURE0 + 1);
+    gl.bindTexture(gl.TEXTURE_2D, state.TargetTexture);
 }
 
 function render(
