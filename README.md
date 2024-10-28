@@ -2,6 +2,8 @@
 
 This project is a demonstration of the Game of Life implemented using WebGL shaders.
 
+Demo: https://wgol-demo.clems4ever.com/
+
 ## What is Game of Life
 
 The [Game of Life][game-of-life] is a cellular automaton devised by mathematician John Horton Conway in 1970. It is a zero-player game, meaning that its evolution is determined solely by its initial state and its rules. The Game of Life has been known to produce many intriguing patterns that have been cataloged and extensively studied.
@@ -21,6 +23,9 @@ While there are several examples online demonstrating how to simulate particle s
 In essence, this simulation consists of two WebGL programs. The first computes the next state of the grid, while the second renders the resulting grid onto the viewport.
 
 The core concept involves using textures as buffers to store the grid's state. The second WebGL program then scales and projects these textures for display onto a canvas. The shader code implementing the Game of Life rules can be found [here][simulation-shader].
+
+Note that there is absolutely no server-side computing, all the operations are done locally in your own graphic
+card.
 
 ## Run locally
 
