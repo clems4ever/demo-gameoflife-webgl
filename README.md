@@ -1,46 +1,47 @@
-# Getting Started with Create React App
+# WebGL Game of Life
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a demonstration of the Game of Life implemented using WebGL shaders.
 
-## Available Scripts
+## What is Game of Life
 
-In the project directory, you can run:
+The [Game of Life][game-of-life] is a cellular automaton devised by mathematician John Horton Conway in 1970. It is a zero-player game, meaning that its evolution is determined solely by its initial state and its rules. The Game of Life has been known to produce many intriguing patterns that have been cataloged and extensively studied.
 
-### `npm start`
+## WebGL-Powered simulation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Why use WebGL
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+I am passionate about simulations, and this project exemplifies how WebGL can be repurposed as a general-purpose GPU (GPGPU) platform. This approach enables various computational tasks to be accessible on the web, with the only requirement being a web browser with hardware acceleration enabled.
 
-### `npm test`
+The Game of Life, while computationally intensive, is highly parallelizable, making it an ideal candidate for testing. In its simplest form, the simulation involves applying a convolution operator across the entire grid using a 3x3 matrix kernel. If the grid contains \( P \) cells and the kernel has \( K^2 \) values, then the time complexity is \( O(P \cdot K^2) \). Naturally, as the size of the kernel increases, the number of operations grows significantly.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+While there are several examples online demonstrating how to simulate particle systems using WebGL, it was challenging to find a straightforward, easily replicable example for beginners. This project aims to fill that gap.
 
-### `npm run build`
+### How it works
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In essence, this simulation consists of two WebGL programs. The first computes the next state of the grid, while the second renders the resulting grid onto the viewport.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The core concept involves using textures as buffers to store the grid's state. The second WebGL program then scales and projects these textures for display onto a canvas. The shader code implementing the Game of Life rules can be found [here][simulation-shader].
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Run locally
 
-### `npm run eject`
+To run this project locally, execute the following commands:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bashrc
+git clone git@github.com:clems4ever/gameoflife-webgl.git
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+cd gameoflife-webgl
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+yarn install
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+yarn run start
+```
 
-## Learn More
+## License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This project is licensed under the MIT License.
+Feel free to use it as you see fit. If this project was helpful to you,
+you can buy me a beer!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+[game-of-life]: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+[simulation-shader]: /src/components/GameOfLifeCanvas/simulation/fragment.glsl

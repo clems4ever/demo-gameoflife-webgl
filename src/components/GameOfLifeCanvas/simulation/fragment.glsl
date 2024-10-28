@@ -3,15 +3,13 @@ precision highp float;
 uniform sampler2D u_texture;
 uniform vec2 u_textureDims;
 
-int get(int x, int y)
-{
+int get(int x, int y) {
     vec2 texcoord = (gl_FragCoord.xy + vec2(x, y)) / u_textureDims;
     return int(texture2D(u_texture, texcoord));
 }
 
-float next() {
-    //count the "living" neighbour texels
-    int sum = get(-1, -1) +
+int next() {
+    int neighbours_alive = get(-1, -1) +
               get(-1,  0) +
               get(-1,  1) +
               get( 0, -1) +
@@ -19,21 +17,27 @@ float next() {
               get( 1, -1) +
               get( 1,  0) +
               get( 1,  1);
+    int current = get(0, 0);
+    bool live = current == 1;
 
-    //if we have 3 living neighbours the current cell will live, if there are two,
-    //we keep the current state. Otherwise the cell is dead.
-    if (sum==3) {
-        return 1.0;
+    // Below are the rules:
+    // - Any live cell with fewer than two live neighbours dies, as if by underpopulation.
+    // - Any live cell with two or three live neighbours lives on to the next generation.
+    // - Any live cell with more than three live neighbours dies, as if by overpopulation.
+    // - Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+    if (live && neighbours_alive < 2) {
+        return 0;
+    } else if (live && (neighbours_alive == 2 || neighbours_alive == 3)) {
+        return current;
+    } else if (live && neighbours_alive > 3) {
+        return 0;
+    } else if (!live && neighbours_alive == 3) {
+        return 1;
     }
-    else if (sum== 2) {
-        return float(get(0, 0));
-    }
-    else {
-        return 0.0;
-    }
+    return 0;
 }
  
 void main() {
-    float current = next();
+    float current = float(next());
     gl_FragColor = vec4(current, current, current, 1.0);
 }
