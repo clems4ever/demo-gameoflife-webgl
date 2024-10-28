@@ -1,4 +1,4 @@
-# WebGL Game of Life
+# Game of Life powered by WebGL
 
 This project is a demonstration of the Game of Life implemented using WebGL shaders.
 
@@ -49,12 +49,13 @@ yarn run start
 ### Lenia
 
 This project has actually been created to enable a heavier version of the game of life in the continuous domain
-called [Lenia](https://chakazul.github.io/Lenia/JavaScript/Lenia.html)
+called [Lenia](https://chakazul.github.io/Lenia/JavaScript/Lenia.html).
 
 ## License
 
 This project is licensed under the MIT License.
-Feel free to use it as you see fit. If this project was helpful to you,
+
+Feel free to use it as you see fit. If it was helpful to you,
 you can buy me a beer!
 
 
