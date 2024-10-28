@@ -11,8 +11,8 @@ function App() {
       <GameOfLifeCanvas
         canvasWidth={width ? width : 1024}
         canvasHeight={height ? height : 1024}
-        gridHeight={width ? width / cellSize : 256}
-        gridWidth={height ? height / cellSize: 256}
+        gridWidth={width ? width / cellSize : 256}
+        gridHeight={height ? height / cellSize: 256}
         intervalMs={100}
       />
     </div>

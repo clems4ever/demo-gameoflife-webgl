@@ -3,21 +3,21 @@ import { useState, useEffect, useCallback } from "react";
 export default function useWindowDimensions() {
   const hasWindow = typeof window !== "undefined";
 
-  function getWindowDimensions() {
+  const getWindowDimensions = useCallback(() => {
     const width = hasWindow ? window.innerWidth : null;
     const height = hasWindow ? window.innerHeight : null;
     return {
       width,
       height,
     };
-  }
+  }, [hasWindow]);
 
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
   const handleResize = useCallback(() => {
     setWindowDimensions(getWindowDimensions());
-  }, [setWindowDimensions]);
+  }, [setWindowDimensions, getWindowDimensions]);
 
   useEffect(() => {
     if (hasWindow) {

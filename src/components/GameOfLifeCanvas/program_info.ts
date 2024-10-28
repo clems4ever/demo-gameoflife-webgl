@@ -106,9 +106,9 @@ function setTexCoord(gl: WebGLRenderingContext, location: GLuint) {
       0.0, 0.0,
       0.0, 1.0,
       1.0, 0.0,
-      1.0, 0.0,
-      0.0, 1.0,
       1.0, 1.0,
+      0.0, 1.0,
+      1.0, 0.0
      ])
 
   // Create a buffer for texcoords.
@@ -129,11 +129,11 @@ function setGeometry(gl: WebGLRenderingContext, location: GLuint) {
   gl.bindBuffer(gl.ARRAY_BUFFER, simulationPositionBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
     -1, -1,
-     1, -1,
-    -1,  1,
     -1,  1,
      1, -1,
      1,  1,
+    -1,  1,
+     1, -1,
   ]), gl.STATIC_DRAW);
 
   // setup our attributes to tell WebGL how to pull
