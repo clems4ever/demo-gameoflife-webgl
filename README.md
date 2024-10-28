@@ -17,7 +17,7 @@ The [Game of Life][game-of-life] is a cellular automaton devised by mathematicia
 
 I am passionate about simulations, and this project exemplifies how WebGL can be repurposed as a general-purpose GPU (GPGPU) platform. This approach enables various computational tasks to be accessible on the web, with the only requirement being a web browser with hardware acceleration enabled.
 
-The Game of Life, while computationally intensive, is highly parallelizable, making it an ideal candidate for testing. In its simplest form, the simulation involves applying a convolution operator across the entire grid using a 3x3 matrix kernel. If the grid contains \( P \) cells and the kernel has \( K^2 \) values, then the time complexity is \( O(P \cdot K^2) \). Naturally, as the size of the kernel increases, the number of operations grows significantly.
+The Game of Life, while computationally intensive, is highly parallelizable, making it an ideal candidate for testing. In its simplest form, the simulation involves applying a convolution operator across the entire grid using a 3x3 matrix kernel. If the grid contains $P$ cells and the kernel has $K^2$ values, then the time complexity is $O(P \cdot K^2)$. Naturally, as the size of the kernel increases, the number of operations grows significantly.
 
 While there are several examples online demonstrating how to simulate particle systems using WebGL, it was challenging to find a straightforward, easily replicable example for beginners. This project aims to fill that gap.
 
@@ -43,6 +43,13 @@ yarn install
 
 yarn run start
 ```
+
+## Extensions
+
+### Lenia
+
+This project has actually been created to enable a heavier version of the game of life in the continuous domain
+called [Lenia](https://chakazul.github.io/Lenia/JavaScript/Lenia.html)
 
 ## License
 
