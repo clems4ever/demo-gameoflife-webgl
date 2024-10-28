@@ -11,7 +11,7 @@ Demo: https://wgol-demo.clems4ever.com/
 
 The [Game of Life][game-of-life] is a cellular automaton devised by mathematician John Horton Conway in 1970. It is a zero-player game, meaning that its evolution is determined solely by its initial state and its rules. The Game of Life has been known to produce many intriguing patterns that have been cataloged and extensively studied.
 
-## WebGL-Powered simulation
+## WebGL-powered simulation
 
 ### Why use WebGL
 
